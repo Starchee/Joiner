@@ -10,6 +10,7 @@ public class JoinerFiles {
     private ArrayList<String> inputFileNames;
     private ComparatorForMerge compare;
     private String outputFileName;
+    private ArrayList<File> tempFileList;
 
 
     public JoinerFiles(String typeOfMerge, String outputFileName, ArrayList<String> InputFileNames) {
@@ -20,15 +21,20 @@ public class JoinerFiles {
 
     public void startMerge() throws IOException {
         ListIterator<String> iterator = inputFileNames.listIterator();
-        while (inputFileNames.size()>2){
+        if (inputFileNames.size() > 2) {
+            tempFileList = new ArrayList<>();
             int i = 0;
-            String file1 = iterator.next();
-            iterator.remove();
-            String file2 = iterator.next();
-            iterator.remove();
-            mergeFiles(file1,file2, "temp"+i+".txt");
-            iterator.add("temp"+i+".txt");
-            i++;
+            while (inputFileNames.size() > 2) {
+                String file1 = iterator.next();
+                iterator.remove();
+                String file2 = iterator.next();
+                iterator.remove();
+                String tempNameFile = "temp" + i + ".txt";
+                mergeFiles(file1, file2, tempNameFile);
+                iterator.add(tempNameFile);
+                tempFileList.add(new File(tempNameFile));
+                i++;
+            }
         }
         if (inputFileNames.size()==2){
             String file1 = inputFileNames.get(1);
@@ -36,6 +42,11 @@ public class JoinerFiles {
             mergeFiles(file1,file2, outputFileName);
         } else {
             throw new NotEnoughFilesException();
+        }
+        if (tempFileList!=null){
+            for (File file : tempFileList){
+                file.delete();
+            }
         }
     }
     private void mergeFiles(String inputFileName1, String inputFileName2, String outputFileName3) throws IOException {
@@ -79,6 +90,10 @@ public class JoinerFiles {
                     fileWriter.println(file2);
                     log.info(file2 + " - write in " + outputFileName3);
                     file2 = reader2.readLine();
+                } else {
+                    buff = file1;
+                    log.info(file1 + " - write in " + outputFileName3);
+                    file1 = reader1.readLine();
                 }
                     } else {
                     if (compare.compareForMerge(file1, file2)) {

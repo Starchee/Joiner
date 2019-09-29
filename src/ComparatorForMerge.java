@@ -11,11 +11,11 @@ public class ComparatorForMerge {
 
         switch (typeOfMerge){
             case("IntegerRight"):{
-                compare = Integer.parseInt(file1) <= Integer.parseInt(file2);
+                compare = Integer.parseInt(file1) < Integer.parseInt(file2);
             }
             break;
             case ("IntegerLeft"):{
-                compare = Integer.parseInt(file1) >= Integer.parseInt(file2);
+                compare = Integer.parseInt(file1) > Integer.parseInt(file2);
             }
             break;
             case ("StringRight"):{
