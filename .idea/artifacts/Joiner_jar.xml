@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Joiner:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Joiner_jar</output-path>
+    <root id="archive" name="Joiner.jar">
+      <element id="module-output" name="Joiner" />
+    </root>
+  </artifact>
+</component>

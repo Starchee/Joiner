@@ -1,3 +1,5 @@
+import exceptions.NotEnoughFilesException;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.ListIterator;
@@ -32,6 +34,8 @@ public class JoinerFiles {
             String file1 = inputFileNames.get(1);
             String file2 = inputFileNames.get(0);
             mergeFiles(file1,file2, outputFileName);
+        } else {
+            throw new NotEnoughFilesException();
         }
     }
     private void mergeFiles(String inputFileName1, String inputFileName2, String outputFileName3) throws IOException {
