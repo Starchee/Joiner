@@ -20,7 +20,8 @@ public class Parameters {
     }
 
     public void parseParameters() {
-        /* if not -a or -d:
+        /*
+         if not -a or -d:
          1. then default typeOfSort Right;
          2. then typeOfDate = args[0].
          */

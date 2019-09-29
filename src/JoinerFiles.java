@@ -42,33 +42,59 @@ public class JoinerFiles {
         BufferedReader reader1 = new BufferedReader(new FileReader(inputFileName1));
         BufferedReader reader2 = new BufferedReader(new FileReader(inputFileName2));
         PrintWriter fileWriter = new PrintWriter(outputFileName3);
+        /*
+        increment 'i' using for don`t compare null;
+        buffer 'buff' using for compare current line with line which write early;
+         */
 
-
+        String buff = null;
+        int i = 0;
         String file1 = reader1.readLine();
         String file2 = reader2.readLine();
 
 
         while (file1 != null | file2 != null) {
             if (file1 == null & file2 != null) {
-                log.info(file2+" - write in "+ outputFileName3);
+                log.info(file2 + " - write in " + outputFileName3);
                 fileWriter.println(file2);
                 file2 = reader2.readLine();
             } else if (file2 == null & file1 != null) {
-                log.info(file1+" - write in "+ outputFileName3);
+                log.info(file1 + " - write in " + outputFileName3);
                 fileWriter.println(file1);
                 file1 = reader1.readLine();
-            } else {
-                if (compare.compareForMerge(file1,file2)) {
-                    log.info(file1+" - write in "+ outputFileName3);
-                    fileWriter.println(file1);
+            } else if (i > 0) {
+                if (compare.compareForMerge(file1, file2) & compare.compareForMerge(file1, buff)) {
+                    log.info(file1 + " - can`t sort");
                     file1 = reader1.readLine();
-
-                } else {
-                    log.info(file2+" - write in "+ outputFileName3);
+                } else if (compare.compareForMerge(file2, file1) & compare.compareForMerge(file2, buff)) {
+                    log.info(file2 + " - can`t sort ");
+                    file2 = reader2.readLine();
+                } else if (compare.compareForMerge(file1, file2)) {
+                    buff = file1;
+                    fileWriter.println(file1);
+                    log.info(file1 + " - write in " + outputFileName3);
+                    file1 = reader1.readLine();
+                } else if (compare.compareForMerge(file2, file1)) {
+                    buff = file2;
                     fileWriter.println(file2);
+                    log.info(file2 + " - write in " + outputFileName3);
                     file2 = reader2.readLine();
                 }
-            }
+                    } else {
+                    if (compare.compareForMerge(file1, file2)) {
+                        buff = file1;
+                        fileWriter.println(file1);
+                        log.info(file1 + " - write in " + outputFileName3);
+                        file1 = reader1.readLine();
+
+                    } else {
+                        buff = file2;
+                        fileWriter.println(file2);
+                        log.info(file2 + " - write in " + outputFileName3);
+                        file2 = reader2.readLine();
+                    }
+                }
+            i++;
         }
         reader1.close();
         reader2.close();
