@@ -1,3 +1,5 @@
+import exceptions.IncorrectParametersException;
+
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -18,6 +20,10 @@ public class Parameters {
     }
 
     public void parseParameters() {
+        /* if not -a or -d:
+         1. then default typeOfSort Right;
+         2. then typeOfDate = args[0].
+         */
         if (args.contains("-a") | args.contains("-d")) {
             for (int i = 0; i < 2; i++){
                 if (args.get(i).equals("-i")){
