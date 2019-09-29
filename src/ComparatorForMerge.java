@@ -19,11 +19,11 @@ public class ComparatorForMerge {
             }
             break;
             case ("StringRight"):{
-                compare = file1.compareTo(file2) <= 0;
+                compare = file1.compareTo(file2) < 0;
             }
             break;
             case ("StringLeft"):{
-                compare = file1.compareTo(file2) >= 0;
+                compare = file1.compareTo(file2) > 0;
             }
             break;
         }
