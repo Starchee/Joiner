@@ -1,8 +1,10 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.ListIterator;
+import java.util.logging.Logger;
 
 public class JoinerFiles {
+    private static Logger log = Logger.getLogger(JoinerFiles.class.getName());
     private ArrayList<String> inputFileNames;
     private ComparatorForMerge compare;
     private String outputFileName;
@@ -44,21 +46,21 @@ public class JoinerFiles {
 
         while (file1 != null | file2 != null) {
             if (file1 == null & file2 != null) {
-                System.out.print(file2 + " ");
+                log.info(file2+" - write in "+ outputFileName3);
                 fileWriter.println(file2);
                 file2 = reader2.readLine();
             } else if (file2 == null & file1 != null) {
-                System.out.print(file1 + " ");
+                log.info(file1+" - write in "+ outputFileName3);
                 fileWriter.println(file1);
                 file1 = reader1.readLine();
             } else {
                 if (comparator.compareForMerge(file1,file2)) {
-                    System.out.print(file1 + " ");
+                    log.info(file1+" - write in "+ outputFileName3);
                     fileWriter.println(file1);
                     file1 = reader1.readLine();
 
                 } else {
-                    System.out.print(file2 + " ");
+                    log.info(file2+" - write in "+ outputFileName3);
                     fileWriter.println(file2);
                     file2 = reader2.readLine();
                 }

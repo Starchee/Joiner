@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class Parameters {
+    private static Logger log = Logger.getLogger(JoinerFiles.class.getName());
     private String typeOfMerge;
     private String typeOfSort = "Right";
     private String outputFileName;
@@ -27,8 +29,10 @@ public class Parameters {
                 }
             }
             outputFileName = args.get(2);
+            log.info("outputFileName - "+outputFileName);
             for (int i = 3; i < args.size(); i++){
-                inputFileNames.add(args.get(i));
+                log.info(args.get(i));
+                inputFileNames.add("inputFileName"+(i-1)+" - "+args.get(i));
             }
 
         } else {
@@ -38,7 +42,9 @@ public class Parameters {
                 typeOfDate = "String";
             }
             outputFileName = args.get(1);
+            log.info("outputFileName - "+outputFileName);
             for (int i = 2; i < args.size(); i++){
+                log.info("inputFileName"+(i-1)+" - "+args.get(i));
                 inputFileNames.add(args.get(i));
             }
         }
