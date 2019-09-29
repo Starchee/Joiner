@@ -2,7 +2,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        String[] args1 = new String[]{"-i","result.txt","123.txt","qwer.txt","asd.txt"};
+        String[] args1 = new String[]{"-g","result.txt","123.txt","qwer.txt","asd.txt"};
 
         Parameters parameters = new Parameters(args1);
         System.out.println(parameters.getTypeOfMerge());

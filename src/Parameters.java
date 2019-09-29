@@ -47,6 +47,10 @@ public class Parameters {
 
 
     private void getParameters() {
+        if (typeOfDate == null){
+            throw new IncorrectParametersException();
+        }
+
         if (typeOfDate.equals("Integer") & (typeOfSort.equals("Right"))) {
             typeOfMerge = "IntegerRight";
         } else if (typeOfDate.equals("Integer")) {

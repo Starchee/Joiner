@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Sort.iml" filepath="$PROJECT_DIR$/Sort.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Joiner.iml" filepath="$PROJECT_DIR$/Joiner.iml" />
     </modules>
   </component>
 </project>
