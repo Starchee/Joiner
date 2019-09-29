@@ -42,7 +42,7 @@ public class JoinerFiles {
         BufferedReader reader1 = new BufferedReader(new FileReader(inputFileName1));
         BufferedReader reader2 = new BufferedReader(new FileReader(inputFileName2));
         PrintWriter fileWriter = new PrintWriter(outputFileName3);
-        ComparatorForMerge comparator = new ComparatorForMerge("IntegerRight");
+
 
         String file1 = reader1.readLine();
         String file2 = reader2.readLine();
@@ -58,7 +58,7 @@ public class JoinerFiles {
                 fileWriter.println(file1);
                 file1 = reader1.readLine();
             } else {
-                if (comparator.compareForMerge(file1,file2)) {
+                if (compare.compareForMerge(file1,file2)) {
                     log.info(file1+" - write in "+ outputFileName3);
                     fileWriter.println(file1);
                     file1 = reader1.readLine();
