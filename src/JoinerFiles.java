@@ -66,13 +66,25 @@ public class JoinerFiles {
 
         while (file1 != null | file2 != null) {
             if (file1 == null & file2 != null) {
-                log.info(file2 + " - write in " + outputFileName3);
-                fileWriter.println(file2);
-                file2 = reader2.readLine();
+                if(compare.compareForMerge(file2,buff)){
+                    log.info(file2 + " - can`t sort ");
+                    file2 = reader2.readLine();
+                } else{
+                    buff = file2;
+                    fileWriter.println(file2);
+                    log.info(file2 + " - write in " + outputFileName3);
+                    file2 = reader2.readLine();
+                }
             } else if (file2 == null & file1 != null) {
-                log.info(file1 + " - write in " + outputFileName3);
-                fileWriter.println(file1);
-                file1 = reader1.readLine();
+                if(compare.compareForMerge(file1,buff)){
+                    log.info(file1 + " - can`t sort ");
+                    file1 = reader1.readLine();
+                } else{
+                    buff = file1;
+                    fileWriter.println(file1);
+                    log.info(file1 + " - write in " + outputFileName3);
+                    file1 = reader1.readLine();
+                }
             } else if (i > 0) {
                 if (compare.compareForMerge(file1, file2) & compare.compareForMerge(file1, buff)) {
                     log.info(file1 + " - can`t sort");

@@ -38,8 +38,8 @@ public class Parameters {
             outputFileName = args.get(2);
             log.info("outputFileName - "+outputFileName);
             for (int i = 3; i < args.size(); i++){
-                log.info(args.get(i));
-                inputFileNames.add("inputFileName"+(i-1)+" - "+args.get(i));
+                log.info("inputFileName"+(i-1)+" - "+args.get(i));
+                inputFileNames.add(args.get(i));
             }
 
         } else {
